@@ -7,9 +7,9 @@ import datetime
 
 
 
-current_directory = os.getcwd()
+# current_directory = os.getcwd()
 
-#current_directory = r"C:\Users\praka\OneDrive\Desktop\Attainu\files"
+current_directory = r"C:\Users\praka\OneDrive\Desktop\Attainu\files"
 
 
 def organize_by_extension(path):
@@ -68,11 +68,11 @@ def organize_by_size(path):
     for i in size_types:
         for k in file_size0:
             if k[1] == i and int(k[0]) < 50:
-                if not os.path.exists(os.path.join(path, "50"+k[1])):
-                    os.mkdir(os.path.join(path, "50"+k[1]))
+                if not os.path.exists(os.path.join(path, "lessThan50"+k[1])):
+                    os.mkdir(os.path.join(path, "lessThan50"+k[1]))
             elif k[1] == i and int(k[0]) > 50:
-                if not os.path.exists(os.path.join(path, "100"+k[1])):
-                    os.mkdir(os.path.join(path, "100"+k[1]))
+                if not os.path.exists(os.path.join(path, "moreThan100"+k[1])):
+                    os.mkdir(os.path.join(path, "moreThan100"+k[1]))
 
     # move files to their respective folders
     new_files = [file for file in os.listdir(
@@ -83,10 +83,10 @@ def organize_by_size(path):
         size_new = size_new.split("_")
         if int(size_new[0]) < 50:
             shutil.move(os.path.join(path, i),
-                        os.path.join(path, "50"+size_new[1]))
+                        os.path.join(path, "lessThan50"+size_new[1]))
         else:
             shutil.move(os.path.join(path, i),
-                    os.path.join(path, "100"+size_new[1]))
+                    os.path.join(path, "moreThan100"+size_new[1]))
     print("done")
 
 # below function converts bytes to their readable size (ex: 1024b=1kb)
